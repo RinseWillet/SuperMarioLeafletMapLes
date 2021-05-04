@@ -5,7 +5,7 @@
 //‘https://api.mapbox.com/styles/v1/USERNAME/STYLE_ID_NUMMER/tiles/256/{z}/{x}/{y}@2x?access_token=JOUW_API_KEY’ 
 
 //variabele voor de 'View' van de kaart aan te maken die de div met de mapid ID target in je HTML
-var mymap =L.map('mapid').setView([52.0473, 4.30012], 13);
+var mymap = L.map('mapid').setView([52.0473, 4.30012], 13);
 
 // Tilelayer toevoegen
 L.tileLayer('https://api.mapbox.com/styles/v1/ikwillet/cknnbwg3f46r117p1bg3gfj2g/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaWt3aWxsZXQiLCJhIjoiY2tubjd5a3VtMGJ2dDJvbGF6NXl4bTA2OCJ9.tflsVQCVhM4im9wS94mkHw', {
@@ -39,5 +39,113 @@ var kasteel = L.icon({
 })
 
 //marker van icoon toevoegen met popup
-var marker2 = L.marker([52.044139, 4.300987], {icon: kasteel}).addTo(mymap);
+var marker2 = L.marker([52.044139, 4.300987], { icon: kasteel }).addTo(mymap);
 marker2.bindPopup("Ik ben een kasteel");
+
+
+//array
+
+const voorbeeldArray = ["aap", "noot", "mies", "codecafe"];
+
+console.log("eerste item : " + voorbeeldArray[0]);
+console.log("tweede item : " + voorbeeldArray[1]);
+
+//twee dimensionale array
+
+const tweedimensionaleArray = [["aap", "noot", "mies", "codecafe"], ["saab", "volkswagen", "fiat"], ["Yoshi", "Mario", "Luigi", "Peach"]];
+
+console.log("tweede item, eerste array : " + tweedimensionaleArray[0][1]);
+console.log("eerste item, tweede array : " + tweedimensionaleArray[1][0]);
+console.log("vierde item, derde array : " + tweedimensionaleArray[2][3]);
+
+//array met markers
+// 2 dimensionaal
+
+// naam
+// Breedtegraad,
+// Lengtegraad
+// locatie icon
+// scaledSize breedte,
+// en hoogte
+
+//array met alle markers
+const markers = [
+
+    // individuele
+    [
+        "Yoshi\'s House",
+        52.044794,                  //lengtegraad
+        4.280050,                   //breedtegraad
+        "../icons/hethuisvanyoshi.svg", //icoon path
+        38,                         //breedte
+        31                          //lengte
+    ],
+
+    [
+        "Ghost House",
+        52.047566,
+        4.308938,
+        "../icons/spookhuis.svg",
+        40,
+        48
+    ],
+
+    [
+        "Castle",
+        52.044139,
+        4.300987,
+        "../icons/kasteel.svg",
+        40,
+        53
+    ],
+
+    [
+        "Warp Pipe",
+        52.054328,
+        4.308512,
+        "../icons/pijp.svg",
+        38,
+        42.5
+    ],
+
+    [
+        "Star World",
+        52.054873,
+        4.288318,
+        "../icons/ster.svg",
+        38,
+        38
+    ],
+
+    [
+        "Donut Plains",
+        52.055691,
+        4.263141,
+        "../icons/heuvelmetogen.svg",
+        50,
+        60.7
+    ]
+];
+
+console.log(markers[2][0]);
+
+//for loop om de markers op de kaart te zetten
+
+for (let i = 0; i < markers.length; i++) {
+    // 1 checken of de loop werkt
+    console.log("het werkt");
+    const currMarker = markers[i];
+
+    // 2 checken of iedere array uit de marker array geladen wordt
+    console.log(currMarker[0])
+
+    // 3 Markers neerzetten (a eerst zonder icons, b daarna met, en c daarna popup binden)
+    const marker = new L.marker([currMarker[1], currMarker[2]], {
+        icon: new L.icon({
+            iconUrl: currMarker[3],
+            iconSize: [currMarker[4], currMarker[5]]
+        })
+    }
+    ).addTo(mymap)
+        .bindPopup(currMarker[0])
+};
