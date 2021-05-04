@@ -149,3 +149,23 @@ for (let i = 0; i < markers.length; i++) {
     ).addTo(mymap)
         .bindPopup(currMarker[0])
 };
+
+// Stap 7 de gebruikers locatie opzoeken en markeren
+
+// geolocation
+mymap.locate({setView: true, maxZoom: 14});  //setview centreert de kaart op jouw locatie, maxZoom stelt daarbij het zoomniveau in
+
+// maken marker op jouw locatie
+function onLocationMarker(e) {
+    L.marker(e.latlng, {        //latlng haalt de latitude longitude uit argument e
+        icon: new L.icon({
+            iconUrl: "../icons/jouwplaats.svg",
+            iconSize: [30, 47.8]
+        })}).addTo(mymap)
+        .bindPopup("Je bent hier").openPopup();   //openpopup laat hem automatisch openen
+}
+
+//aanroepen functie om te marken
+mymap.on('locationfound', onLocationMarker);
+
+
