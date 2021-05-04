@@ -74,8 +74,8 @@ const markers = [
     // individuele
     [
         "Yoshi\'s House",
-        52.044794,                  //breedtegraad
-        4.280050,                   //lengtegraad
+        52.044794,                  //breedtegraad (latitude)
+        4.280050,                   //lengtegraad (lengtegraad)
         "../icons/hethuisvanyoshi.svg", //icoon path
         38,                         //breedte
         31                          //lengte
@@ -189,5 +189,37 @@ function onMapClick(e) {
 //aanroepen functie bij het clicken
 mymap.on('click', onMapClick);
 
+//reservetijd 1
 
+//markeren jouw locatie en weergeven hoe dicht je bij de gemeten locatie bent
+// function onLocationProximity(e) {
+//     var radius = e.accuracy;
 
+//     L.marker(e.latlng).addTo(mymap)
+//         .bindPopup("Je bent binnen " + radius + " meter van dit punt").openPopup();
+
+//     L.circle(e.latlng, radius).addTo(mymap);
+// }
+
+// mymap.on('locationfound', onLocationProximity);
+
+//reservetijd 2
+
+//Polygon
+// var polygon = L.polygon([
+//     [52.05767787851548, 4.293661880894559],
+//     [52.05898522997547, 4.291735754728636],
+//     [52.0598553266971, 4.288154451700404],
+//     [52.0609354935163, 4.283224518435924],
+//     [52.06068818419129, 4.282262091862268],
+//     [52.05857011642244, 4.278234844517341],
+//     [52.05708929209503, 4.275900545049581],
+//     [52.05479201446987, 4.277150649087567],
+//     [52.05261887295439, 4.279248441971431],
+//     [52.04909029729211, 4.284070422140607],
+//     [52.05079328696786, 4.287878743185225],
+//     [52.05304035762863, 4.29165010967049],
+//     [52.05452074853039, 4.295667294629812],
+//     [52.05767787851548, 4.293661880894559]
+// ]).addTo(mymap);
+// polygon.bindPopup("Ik ben een polygoon van het Zuiderpark.");
