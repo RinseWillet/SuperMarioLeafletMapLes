@@ -74,8 +74,8 @@ const markers = [
     // individuele
     [
         "Yoshi\'s House",
-        52.044794,                  //lengtegraad
-        4.280050,                   //breedtegraad
+        52.044794,                  //breedtegraad
+        4.280050,                   //lengtegraad
         "../icons/hethuisvanyoshi.svg", //icoon path
         38,                         //breedte
         31                          //lengte
@@ -167,5 +167,27 @@ function onLocationMarker(e) {
 
 //aanroepen functie om te marken
 mymap.on('locationfound', onLocationMarker);
+
+// Stap 8 tooltje maken om te clicken en dat je de coordinaten terugkrijgt
+
+// losse voorbeeld popup
+var popup = L.popup()
+.setLatLng([52.044544, 4.279845])
+.setContent("Ik ben een losse popup")
+.openOn(mymap);   //let op: zet de popup functie op geolocation uit - 1 popup per initiële opening
+
+// Maken van clickable popup voor jouw locatie
+var clickLocatie = L.popup();
+
+function onMapClick(e) {
+    clickLocatie
+    .setLatLng(e.latlng)
+    .setContent("Je klikte op de kaart op deze coördinaten : " + e.latlng.toString())
+    .openOn(mymap)
+}
+
+//aanroepen functie bij het clicken
+mymap.on('click', onMapClick);
+
 
 
